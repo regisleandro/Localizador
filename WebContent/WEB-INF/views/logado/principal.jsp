@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
+<header>
+Olá ${usuario.user}!
+</header>
 <button id="btnEnviar">Minha Localização </button></p>
 <button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
 <div id="mapholder"></div>

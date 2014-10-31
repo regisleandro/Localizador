@@ -1,17 +1,22 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <span class="fa fa-spinner bigicon"></span>
 <h2>Login</h2>
+<c:url var="actionPath" value='login/' />
+<form:form method="post" action="${actionPath}" id="logar">
 <div>
-    <input id="username" type="text" placeholder="usuário" onkeypress="check_values();">
-    <input id="password" type="password" placeholder="senha" onkeypress="check_values();">
-    <button id="button1" class="btn btn-default wide hidden" onclick="alert('ok');">
+    <input id="username" name="username" type="text" placeholder="usuário" onkeypress="check_values();">
+    <input id="password" name="password" type="password" placeholder="senha" onkeypress="check_values();">
+    <button id="button1" class="btn btn-default wide hidden" type="submit">
     	<span class="fa fa-check med"></span>
     </button>
     <span id="lock1" class="fa fa-lock medhidden redborder"></span>
+    <a href="<c:url value='novo_cadastro/' />" >Não tenho cadastro</a> 
 </div>
+</form:form>
 
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">Login com o Facebook
 </fb:login-button>
@@ -19,6 +24,7 @@
 <div id="status">
 </div>
 <script type="text/javascript">
+
     function check_values() {
         if ($("#username").val().length != 0 && $("#password").val().length != 0) {
             $("#button1").removeClass("hidden").animate({ left: '250px' });;

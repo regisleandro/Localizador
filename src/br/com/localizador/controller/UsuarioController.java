@@ -18,13 +18,6 @@ import br.com.localizador.model.Usuario;
 public class UsuarioController {
 	@Autowired
 	private UsuarioJpaDao usuario;
-	
-	@RequestMapping(value = "/cadastro/")
-	public String iniciar(Model model) {
-		model.addAttribute("action","/usuario/salvar/");
-		model.addAttribute("usuario", new Usuario());
-		return "cadastro";
-	}
 
 	@RequestMapping(value = "/dados/")
 	public ModelAndView dadosFacebook(HttpServletRequest request) {
@@ -36,12 +29,14 @@ public class UsuarioController {
 	@RequestMapping(value = "/principal/")
 	public ModelAndView principal(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("principal");
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		model.addObject("usuario", usuario);
 		return model;
 	}	
 
 	// Método que salva
 	@RequestMapping(value = "/usuario/salvar/")
-	public String salvar(@ModelAttribute Usuario user, Model model) {
+	public ModelAndView salvar(@ModelAttribute Usuario user, HttpServletRequest request) {
 		
 		// Salva usuario
 		try {
@@ -50,6 +45,7 @@ public class UsuarioController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "cadastro";
+		request.getSession().setAttribute("usuario", user);
+		return new ModelAndView("redirect:/principal/");
 	}
 }

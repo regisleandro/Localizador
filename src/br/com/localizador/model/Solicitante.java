@@ -3,8 +3,8 @@ package br.com.localizador.model;
 import java.util.List;
 
 public class Solicitante extends Usuario{
-	
-	// Lista do histórico referente ao solicitante
+
+	private static final long serialVersionUID = 539643075721225491L;
 	private List<Historico> historico;
 	
 	public List<Historico> getHistorico() {

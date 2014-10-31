@@ -4,17 +4,11 @@ package br.com.localizador.persistencia;
 // Faz a persistência
 
 import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
 
 public abstract class AbstractJpaDao<T extends Serializable>{
 	   private Class<T> clazz;
