@@ -17,20 +17,46 @@ public final class ConnectionWS extends MessageInbound {
 
 	@Override
 	protected void onOpen(WsOutbound outbound) {
-		// Adiciona essa nova conex√£o a lista de conex√µes
+		// Adiciona essa nova conexao a lista de conxıes
 		CommunicationServlet.getConnections().add(this);
 		String message = String.format("\"%s\" se conectou.", username);
-		CommunicationServlet.broadcast(message);
+		CommunicationServlet.broadcast(message, username);
 	}
 
 	@Override
 	protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
-		throw new RuntimeException("Metodo n√£o aceito");
+		throw new RuntimeException("Metodo n„o aceito");
 	}
 
 	@Override
 	protected void onTextMessage(CharBuffer msg) throws IOException {
 		String message = String.format("\"%s\": %s", username, msg.toString());
-		CommunicationServlet.broadcast(message);
+		CommunicationServlet.broadcast(message, username);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ConnectionWS other = (ConnectionWS) obj;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	
 }

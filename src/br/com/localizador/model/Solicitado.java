@@ -1,11 +1,27 @@
 package br.com.localizador.model;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
 public class Solicitado {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String nome;
 	
-	private Localizacao localizacao;	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+    private Localizacao localizacao;	
 	
 	public Integer getId() {
 		return id;

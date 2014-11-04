@@ -2,9 +2,21 @@ package br.com.localizador.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
 public class Solicitante extends Usuario{
 
 	private static final long serialVersionUID = 539643075721225491L;
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "HISTORICO_ID", nullable = false)
 	private List<Historico> historico;
 	
 	public List<Historico> getHistorico() {

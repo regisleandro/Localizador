@@ -29,7 +29,6 @@ public class LoginController {
 	@RequestMapping(value = "/inicio/loginFacebook")
 	@ResponseBody
 	public String dadosUsuario(HttpServletRequest request,  @RequestParam (value="json") String facebookUser) {
-		System.out.println(facebookUser);
 		String[] user = facebookUser.split("-");
 		FacebookUser faceUser = new FacebookUser();
 		faceUser.setId(user[0]);
@@ -39,10 +38,24 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/inicio/novo_cadastro/")
-	public String principal(Model model) {
+	public ModelAndView novoCadastro(Model model,  HttpServletRequest request) {
 		model.addAttribute("action","/usuario/salvar/");
-		model.addAttribute("usuario", new Usuario());
-		return "cadastro";	
+		Usuario user = new Usuario();
+		model.addAttribute("usuario", user);	
+		
+		return new ModelAndView("cadastro");	
+	}		
+
+	@RequestMapping(value = "/inicio/alterar_cadastro/")
+	public ModelAndView alterarCadastro(Model model,  HttpServletRequest request) {
+		model.addAttribute("action","/usuario/atualizar/");
+		Usuario user = new Usuario();
+		if (request.getSession().getAttribute("usuario")!=null){
+			user = (Usuario) request.getSession().getAttribute("usuario");
+		}
+		model.addAttribute("usuario", user);	
+		
+		return new ModelAndView("cadastro");	
 	}		
 
 	@RequestMapping(value = "/inicio/login/")

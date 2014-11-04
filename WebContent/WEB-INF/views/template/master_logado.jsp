@@ -16,16 +16,16 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/base.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>" />
 </head>
-
+ <c:set var="req" value="${pageContext.request}" />
 <body>
 
 <nav class="menu slide-menu-left">
     <ul>
         <li><button class="close-menu">&larr; Fechar</button></li>
-        <li><a href="#">Onde Estou???</a></li>
+        <li> <a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/principal/" >Onde Estou???</a></li>
         <li><a href="#">Meus Amigos</a></li>
         <li><a href="#">Histórico Percurso</a></li>
-        <li><a href="#">Cadastro</a></li>
+        <li>  <a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/alterar_cadastro/" >Cadastro</a></li>
     </ul>
 </nav><!-- /slide menu left -->
 <header>

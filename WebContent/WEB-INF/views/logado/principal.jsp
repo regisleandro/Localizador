@@ -12,6 +12,8 @@ Olá ${usuario.user}!
 
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
+var username = "${usuario.user}" 
+
 function getLocation()
   {
   if (navigator.geolocation){
@@ -64,7 +66,6 @@ function showError(error){
   function log(msg) {
 	   if (typeof console !== "undefined") console.log(msg); 
    } 
-   var username = "Eu" 
    if ('WebSocket' in window) { 
 	 var websocket = new WebSocket("ws://" + document.location.host + "/Localizador/websocket?username=" + username); 
    } else if ('MozWebSocket' in window) { 
@@ -88,7 +89,7 @@ function showError(error){
 			console.log("Recebeu " + data.data);
 			var btnPosition = document.getElementById("btnPosition");
 			var position = data.data;
-			if (position != btnPosition && position !== '"Eu" se conectou.'){
+			if (position != btnPosition && position !== '"${usuario.user}" se conectou.'){
 				
 				posicao = position.split("|");
 				console.log('posicao' + posicao);

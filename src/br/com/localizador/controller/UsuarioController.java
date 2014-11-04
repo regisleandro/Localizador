@@ -48,4 +48,18 @@ public class UsuarioController {
 		request.getSession().setAttribute("usuario", user);
 		return new ModelAndView("redirect:/principal/");
 	}
+	// Método que atualiza
+	@RequestMapping(value = "/usuario/atualizar/")
+	public ModelAndView atualizar(@ModelAttribute Usuario user, HttpServletRequest request) {
+		
+		// Salva usuario
+		try {
+			usuario.update(user);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getSession().setAttribute("usuario", user);
+		return new ModelAndView("redirect:/principal/");
+	}
 }

@@ -12,10 +12,10 @@
     <definition name="inicio" extends="master.page">
         <put-attribute name="body" value="/inicio.jsp"/>
     </definition>
-    <definition name="cadastro" extends="master.page">
+    <definition name="cadastro" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/cadastro_usuario.jsp"/>
     </definition>
-    <definition name="dados" extends="master.page">
+    <definition name="dados" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/dados_usuario.jsp"/>
     </definition>
     <definition name="principal" extends="master_logado.page">
