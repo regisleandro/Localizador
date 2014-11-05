@@ -55,7 +55,7 @@ public class LoginController {
 		}
 		model.addAttribute("usuario", user);	
 		
-		return new ModelAndView("cadastro");	
+		return new ModelAndView("alterar_cadastro");	
 	}		
 
 	@RequestMapping(value = "/inicio/login/")
@@ -70,5 +70,11 @@ public class LoginController {
 		}
 		
 		return new ModelAndView("redirect:/principal/");
+	}
+	@RequestMapping(value = "/sair/")
+	public ModelAndView efetuarLogout(Model model, HttpServletRequest request) {
+		request.getSession().invalidate();
+		
+		return new ModelAndView("redirect:/inicio/");
 	}		
 }
