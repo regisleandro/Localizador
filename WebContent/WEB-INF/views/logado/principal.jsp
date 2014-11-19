@@ -33,14 +33,6 @@ Olá ${usuario.user}!
 <button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
 </div>
 
-<header>
-Olá ${usuario.user}!
-</header>
-<button id="btnEnviar">Minha Localização </button></p>
-<button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
-<div id="mapholder"></div>
-
-
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
 var username = "${usuario.user}" 
