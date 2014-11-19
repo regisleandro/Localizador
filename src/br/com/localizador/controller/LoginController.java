@@ -9,21 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-<<<<<<< HEAD
-
-import facebook4j.Facebook;
-import facebook4j.FacebookException;
-import facebook4j.FacebookFactory;
-import facebook4j.Friend;
-import facebook4j.Friendlist;
-import facebook4j.Reading;
-import facebook4j.ResponseList;
-import facebook4j.User;
-import facebook4j.auth.AccessToken;
-import facebook4j.conf.ConfigurationBuilder;
-import org.springframework.web.servlet.view.RedirectView;
 import br.com.localizador.domain.UsuarioJpaDao;
-import br.com.localizador.model.FacebookUser;
 import br.com.localizador.model.Usuario;
 
 @Controller

@@ -4,12 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
@@ -54,8 +52,6 @@ public class UsuarioController {
 				ResponseList<Friend> results = facebook.getFriends();
 				
 				model.addObject("facebookFriends", results);		
-				Friend friend;
-				friend.get
 
 			} catch (FacebookException e) {
 				e.printStackTrace();
@@ -78,11 +74,7 @@ public class UsuarioController {
 		request.getSession().setAttribute("usuario", user);
 		return new ModelAndView("redirect:/principal/");
 	}
-<<<<<<< HEAD
-	// M�todo que atualiza
-=======
-	// M�todo que atualiza
->>>>>>> a6dc85de8a3bcfc80997ba0cbbc37cbf5c8264ad
+	
 	@RequestMapping(value = "/usuario/atualizar/")
 	public ModelAndView atualizar(@ModelAttribute Usuario user, HttpServletRequest request) {
 		
@@ -95,5 +87,20 @@ public class UsuarioController {
 		}
 		request.getSession().setAttribute("usuario", user);
 		return new ModelAndView("redirect:/principal/");
+	}
+	
+	//Método que exclui
+	@RequestMapping(value = "/usuario/excluir/")
+	public ModelAndView excluir(@ModelAttribute Usuario user, HttpServletRequest request) {
+	
+		// Exclui usuário
+		try {
+			usuario.delete(user);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.getSession().setAttribute("usuario", user);
+		return new ModelAndView("redirect:/Localizador/inicio/");
 	}
 }

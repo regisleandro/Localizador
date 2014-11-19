@@ -18,7 +18,8 @@
 </div>
 </form:form>
 
-<fb:login-button scope="public_profile,email, user_friends" onlogin="checkLoginState();">Login com o Facebook
+<fb:login-button scope="public_profile,email, user_friends" 
+	onlogin="checkLoginState();">Login com o Facebook
 </fb:login-button>
 
 <div id="status">
