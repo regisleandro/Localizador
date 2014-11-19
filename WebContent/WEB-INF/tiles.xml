@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <!-- Master -->
+    <definition name="master.page" template="/WEB-INF/views/template/master.jsp">
+    </definition>
+    <definition name="master_logado.page" template="/WEB-INF/views/template/master_logado.jsp">
+    </definition>
+    <!--  Pages -->
+    <definition name="inicio" extends="master.page">
+        <put-attribute name="body" value="/inicio.jsp"/>
+    </definition>
+    <definition name="cadastro" extends="master.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/cadastro_usuario.jsp"/>
+    </definition>
+    <definition name="alterar_cadastro" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/cadastro_usuario.jsp"/>
+    </definition>
+    <definition name="dados" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/dados_usuario.jsp"/>
+    </definition>
+    <definition name="principal" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/principal.jsp"/>
+    </definition>
+</tiles-definitions>
