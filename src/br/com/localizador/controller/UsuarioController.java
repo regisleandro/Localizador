@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 import facebook4j.Facebook;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
@@ -37,6 +38,7 @@ public class UsuarioController {
 		ModelAndView model = new ModelAndView("principal");
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		model.addObject("usuario", usuario);
+
 		if (!usuario.getFacebookId().isEmpty()){
 			String accessToken = (String) request.getSession().getAttribute("accessToken");
 			
@@ -63,7 +65,6 @@ public class UsuarioController {
 		return model;
 	}	
 
-	// M�todo que salva
 	@RequestMapping(value = "/usuario/salvar/")
 	public ModelAndView salvar(@ModelAttribute Usuario user, HttpServletRequest request) {
 		
@@ -77,7 +78,11 @@ public class UsuarioController {
 		request.getSession().setAttribute("usuario", user);
 		return new ModelAndView("redirect:/principal/");
 	}
+<<<<<<< HEAD
 	// M�todo que atualiza
+=======
+	// M�todo que atualiza
+>>>>>>> a6dc85de8a3bcfc80997ba0cbbc37cbf5c8264ad
 	@RequestMapping(value = "/usuario/atualizar/")
 	public ModelAndView atualizar(@ModelAttribute Usuario user, HttpServletRequest request) {
 		

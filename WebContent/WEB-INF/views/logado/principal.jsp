@@ -32,6 +32,12 @@ Olá ${usuario.user}!
 <button id="btnEnviar">Minha Localização </button></p>
 <button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
 </div>
+
+<header>
+Olá ${usuario.user}!
+</header>
+<button id="btnEnviar">Minha Localização </button></p>
+<button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
 <div id="mapholder"></div>
 
 

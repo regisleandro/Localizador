@@ -33,11 +33,13 @@
 <header>
  <div>
 	 <div class="buttons">
+
 	       
 	       <button class="nav-toggler toggle-slide-left" 
 	       		   style="background-color:transparent; border-color:transparent;">
 	        <img src="<c:url value='/resources/images/menu.png'/>" height="35"/>
 	       </button>
+
 	   </div><!-- /buttons -->
  </div>
 </header>
