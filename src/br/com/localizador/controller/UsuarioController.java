@@ -26,13 +26,16 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioJpaDao usuario;
 
-	@RequestMapping(value = "/dados/")
+	@RequestMapping(value = "/amigos/")
 	public ModelAndView dadosFacebook(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("dados");
-		model.addObject("facebookUser", (FacebookUser) request.getSession().getAttribute("facebookUser"));
+		ModelAndView model = new ModelAndView("amigos");
+		ResponseList<Friend> amigos = (ResponseList<Friend>) request.getSession().getAttribute("amigos");
+		
+		model.addObject("amigos", amigos);
+
 		return model;
 	}	
-	
+
 	@RequestMapping(value = "/principal/")
 	public ModelAndView principal(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("principal");
@@ -52,7 +55,7 @@ public class UsuarioController {
 				FacebookFactory ff = new FacebookFactory(cb.build());
 				Facebook facebook = ff.getInstance();
 				ResponseList<Friend> results = facebook.getFriends();
-				
+				request.getSession().setAttribute("amigos", results);
 				model.addObject("facebookFriends", results);		
 
 			} catch (FacebookException e) {
