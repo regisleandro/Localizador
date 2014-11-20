@@ -5,6 +5,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import br.com.localizador.domain.UsuarioJpaDao;
+import br.com.localizador.model.Solicitante;
 import br.com.localizador.model.Usuario;
 
 @Repository
@@ -21,9 +22,17 @@ public class UsuarioDaoImpl extends AbstractJpaDao<Usuario> implements UsuarioJp
 		query.setParameter("password", password);
 		Usuario usuario = query.getSingleResult();
 		if (usuario == null ){
-			throw new Exception("Usu·rio ou senha inv·lidos!");
+			throw new Exception("Usu√°rio ou senha inv√°lidos!");
 		}
 		return usuario;
+	}
+
+	@Override
+	public Solicitante getSolicitante(Usuario usuario) throws Exception {
+		TypedQuery<Solicitante> query = entityManager.createQuery("from Solicitante s where s.user = :username", Solicitante.class);
+		query.setParameter("username", usuario.getUser());
+		Solicitante s = query.getSingleResult();
+		return s;
 	}
 	
 }
