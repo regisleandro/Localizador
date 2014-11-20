@@ -27,6 +27,7 @@
         <li><a href="#">Histórico Percurso</a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/alterar_cadastro/" >Cadastro</a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/" > Logout </a></li>
+        <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/deletar/" >Deletar Cadastro</a></li>
         
     </ul>
 </nav><!-- /slide menu left -->

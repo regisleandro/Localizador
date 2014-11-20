@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -90,17 +91,15 @@ public class UsuarioController {
 	}
 	
 	//Método que exclui
-	@RequestMapping(value = "/usuario/excluir/")
-	public ModelAndView excluir(@ModelAttribute Usuario user, HttpServletRequest request) {
-	
-		// Exclui usuário
-		try {
-			usuario.delete(user);
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		request.getSession().setAttribute("usuario", user);
-		return new ModelAndView("redirect:/Localizador/inicio/");
-	}
+	@RequestMapping(value = "/inicio/deletar/")
+	 public ModelAndView deletarCadastros(Model model,  HttpServletRequest request) {
+	  model.addAttribute("action","/usuario/excluir/");
+	  Usuario user = new Usuario();
+	  if (request.getSession().getAttribute("usuario")!=null){
+	   user = (Usuario) request.getSession().getAttribute("usuario");
+	  }
+	  model.addAttribute("usuario", user); 
+	  
+	  return new ModelAndView("deletar"); 
+	 }
 }

@@ -24,4 +24,7 @@
     <definition name="principal" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/principal.jsp"/>
     </definition>
+    <definition name="deletar" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/deletar_cadastro.jsp"/>
+    </definition>
 </tiles-definitions>
