@@ -23,6 +23,12 @@
     </definition>
     <definition name="principal" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/principal.jsp"/>
+    </definition>    
+    <definition name="amigos" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/amigos.jsp"/>
+    </definition> 
+    <definition name="historico" extends="master_logado.page">
+        <put-attribute name="body" value="/WEB-INF/views/logado/historico.jsp"/>
     </definition>
     <definition name="deletar" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/deletar_cadastro.jsp"/>

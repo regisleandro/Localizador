@@ -19,6 +19,18 @@ public class Solicitante extends Usuario{
     @JoinColumn(name = "HISTORICO_ID", nullable = false)
 	private List<Historico> historico;
 	
+	public Solicitante(){
+		
+	}
+	
+	public Solicitante(Usuario u) {
+		super.setFacebookId(u.getFacebookId());
+		super.setId(u.getId());
+		super.setUser(u.getUser());
+		super.setPassword(u.getPassword());
+
+	}
+
 	public List<Historico> getHistorico() {
 		return historico;
 	}

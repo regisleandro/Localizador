@@ -1,6 +1,7 @@
 package br.com.localizador.model;
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,10 @@ public class Historico {
 	@OneToOne
 	@PrimaryKeyJoinColumn
 	private Solicitado solicitado;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+    private Localizacao localizacao;	
 
 	public Solicitado getSolicitado() {
 		return solicitado;
@@ -34,8 +39,13 @@ public class Historico {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	
-	public void salvar(){
-		
+
+	public Localizacao getLocalizacao() {
+		return localizacao;
 	}
+
+	public void setLocalizacao(Localizacao localizacao) {
+		this.localizacao = localizacao;
+	}
+
 }

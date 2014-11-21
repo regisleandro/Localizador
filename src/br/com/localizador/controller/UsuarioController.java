@@ -17,6 +17,7 @@ import facebook4j.ResponseList;
 import facebook4j.conf.ConfigurationBuilder;
 import br.com.localizador.domain.UsuarioJpaDao;
 import br.com.localizador.model.FacebookUser;
+import br.com.localizador.model.Solicitante;
 import br.com.localizador.model.Usuario;
 
 
@@ -25,13 +26,16 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioJpaDao usuario;
 
-	@RequestMapping(value = "/dados/")
+	@RequestMapping(value = "/amigos/")
 	public ModelAndView dadosFacebook(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("dados");
-		model.addObject("facebookUser", (FacebookUser) request.getSession().getAttribute("facebookUser"));
+		ModelAndView model = new ModelAndView("amigos");
+		ResponseList<Friend> amigos = (ResponseList<Friend>) request.getSession().getAttribute("amigos");
+		
+		model.addObject("amigos", amigos);
+
 		return model;
 	}	
-	
+
 	@RequestMapping(value = "/principal/")
 	public ModelAndView principal(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("principal");
@@ -51,7 +55,7 @@ public class UsuarioController {
 				FacebookFactory ff = new FacebookFactory(cb.build());
 				Facebook facebook = ff.getInstance();
 				ResponseList<Friend> results = facebook.getFriends();
-				
+				request.getSession().setAttribute("amigos", results);
 				model.addObject("facebookFriends", results);		
 
 			} catch (FacebookException e) {
@@ -75,6 +79,22 @@ public class UsuarioController {
 		request.getSession().setAttribute("usuario", user);
 		return new ModelAndView("redirect:/principal/");
 	}
+	
+	@RequestMapping(value = "/historico/")
+	public ModelAndView historico(Model model, HttpServletRequest request) {
+		Usuario user = (Usuario) request.getSession().getAttribute("usuario");
+		ModelAndView modelView = new ModelAndView("historico");
+
+		try {
+			Solicitante s = usuario.getSolicitante(user);
+			modelView.addObject("historico", s.getHistorico());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return modelView;
+	}
+	
 	
 	@RequestMapping(value = "/usuario/atualizar/")
 	public ModelAndView atualizar(@ModelAttribute Usuario user, HttpServletRequest request) {
