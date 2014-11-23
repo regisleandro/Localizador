@@ -15,6 +15,18 @@
        min-width: 100%;
        min-height: 100%;
     }
+	.popin{
+	  background:#fff;
+	  padding:15px;
+	  box-shadow: 0 0 20px #999;
+	  border-radius:2px;
+	}
+	
+	#mapholder {
+ 	 height:300px;
+  	 background:#6699cc;
+	}
+	
 </style>
 <header>
 Olá ${usuario.user}!
@@ -31,11 +43,18 @@ Olá ${usuario.user}!
 <br/>
 <button id="btnEnviar">Minha Localização </button></p>
 <button id="btnPosition" style="visibility:hidden">Ver Mapa </button></p>
+
+<div id="map" class="popin">
+	<div id="mapholder" ></div>
+</div>
 </div>
 
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script src="<c:url value='/resources/js/gmaps.js'/>"></script>
 <script>
 var username = "${usuario.user}" 
+
+document.getElementById("map").style.visibility="hidden";
 
 function getLocation()
   {
@@ -46,25 +65,32 @@ function getLocation()
   }
 
 function getCoordinates(position){
-	console.log(position.coords.latitude + " " + position.coords.longitude);
+	console.log(position.coords.latitude + " - " + position.coords.longitude);
 	sendMessage(position);
 }
 
-function showPosition(lat, lon){
-  latlon=new google.maps.LatLng(lat, lon)
-  mapholder=document.getElementById('mapholder') 
-  mapholder.style.height='350px';
-  mapholder.style.width='100%';
+function getActualPosition(position){
+	return position;
+}
 
-  var myOptions={
-  	center:latlon,zoom:14,
-  	mapTypeId:google.maps.MapTypeId.ROADMAP,
-  	mapTypeControl:false,
-  	navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
-  };
-  var map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
-  var marker=new google.maps.Marker({position:latlon,map:map,title:"Eu estou aqui!"});
-  
+function showPosition(lat, lon){
+	var path = [];
+	navigator.geolocation.getCurrentPosition(function(actualPosition){
+		var map = new GMaps({
+			  div: '#mapholder',
+			  lat: lat,
+			  lng: lon
+			});
+		map.drawRoute({
+			  origin: [lat, lon],
+			  destination: [actualPosition.coords.latitude, actualPosition.coords.longitude],
+			  travelMode: 'driving',
+			  strokeColor: '#131540',
+			  strokeOpacity: 0.6,
+			  strokeWeight: 6
+			});
+	});
+	document.getElementById("map").style.visibility="visible";
  }
   
 function showError(error){
@@ -106,7 +132,7 @@ function showError(error){
 		}; 
 		websocket.onerror = function(e) { 
 			log("Aconteceu um erro");
-			log(e);
+			log("-- " + e);-77.02271108990476
 		}; 
 		websocket.onmessage = function(data) {
 			console.log("Recebeu " + data.data);
@@ -118,8 +144,8 @@ function showError(error){
 				console.log('posicao' + posicao);
 				lat = posicao[1];
 				lon = posicao[2];
-				showPosition(lat,lon);
-/*				
+			//	showPosition(lat,lon);
+				
 				btnPosition.style.visibility = "visible";
 				btnPosition.onclick = function(){
 					posicao = position.split("|");
@@ -128,7 +154,7 @@ function showError(error){
 					lon = posicao[2];
 					showPosition(lat,lon);
 				};
-*/			
+			
 			}
 			
 		}; 

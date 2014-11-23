@@ -27,11 +27,14 @@ public class CommunicationServlet extends WebSocketServlet {
 	}
 
 	public static final void broadcast(String message, String username) {
+		
+		for (ConnectionWS connection :  CommunicationServlet.getConnections()) {
 			try {
-			ConnectionWS con = CommunicationServlet.getConnections().get(CommunicationServlet.getConnections().indexOf(new ConnectionWS(username)));
-			con.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
-		} catch (IOException ioe) {
-			System.out.println("Aconteceu um erro");
+				connection.getWsOutbound().writeTextMessage(CharBuffer.wrap(message));
+			} catch (IOException ignore){
+			// Ignore
+			}
 		}
+
 	}
 }
