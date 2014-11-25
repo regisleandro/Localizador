@@ -27,7 +27,7 @@
         <li><a  href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/historico/">Histórico Percurso</a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/alterar_cadastro/" >Cadastro</a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/deletar/" >Deletar Cadastro</a></li>
-        <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/" onclick="fbLogoutUser()"> Logout </a></li>
+        <li><a href="#" onclick="fbLogoutUser()"> Logout </a></li>
     </ul>
 </nav><!-- /slide menu left -->
 <header>
@@ -86,10 +86,11 @@ function fbLogoutUser(response){
             // and signed request each expire
             var uid = response.authResponse.userID;
             var accessToken = response.authResponse.accessToken;
-            console.log(accessToken)
             FB.logout(function (response) {
-            	FB.Auth.setAuthResponse(null, 'unknown');
-
+             	try{
+                   	FB.Auth.setAuthResponse(null, 'unknown');
+             	}catch(err){}
+             	window.location = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/";
             });
         } else if (response.status === 'not_authorized') {
             // the user is logged in to Facebook, 
