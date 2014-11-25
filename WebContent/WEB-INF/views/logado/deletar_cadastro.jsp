@@ -8,6 +8,6 @@
 	 <form:hidden path="id" />
 	  
 	  <div class="form-group">
-		 	<button type="submit" onclick="deletar()" value="delete" class="btn btn-default">Deletar</button>
+		 	<button type="submit"  class="btn btn-default">Deletar</button>
 	  </div>
 </form:form>

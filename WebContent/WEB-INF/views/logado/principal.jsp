@@ -128,11 +128,10 @@ function showError(error){
 		}; 
 		websocket.onclose = function() { 
 			log("Desconectou com sucesso"); 
-			alert("Desconectou com sucesso"); 
 		}; 
 		websocket.onerror = function(e) { 
 			log("Aconteceu um erro");
-			log("-- " + e);-77.02271108990476
+			log("-- " + e);
 		}; 
 		websocket.onmessage = function(data) {
 			console.log("Recebeu " + data.data);
@@ -145,7 +144,7 @@ function showError(error){
 				lat = posicao[1];
 				lon = posicao[2];
 			//	showPosition(lat,lon);
-				
+				v
 				btnPosition.style.visibility = "visible";
 				btnPosition.onclick = function(){
 					posicao = position.split("|");

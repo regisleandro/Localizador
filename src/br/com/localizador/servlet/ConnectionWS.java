@@ -17,7 +17,7 @@ public final class ConnectionWS extends MessageInbound {
 
 	@Override
 	protected void onOpen(WsOutbound outbound) {
-		// Adiciona essa nova conexao a lista de conxões
+		// Adiciona essa nova conexao a lista de conxoes
 		CommunicationServlet.getConnections().add(this);
 		String message = String.format("\"%s\" se conectou.", username);
 		CommunicationServlet.broadcast(message, username);
@@ -25,7 +25,7 @@ public final class ConnectionWS extends MessageInbound {
 
 	@Override
 	protected void onBinaryMessage(ByteBuffer arg0) throws IOException {
-		throw new RuntimeException("Metodo não aceito");
+		throw new RuntimeException("Metodo nao aceito");
 	}
 
 	@Override

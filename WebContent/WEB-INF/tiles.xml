@@ -30,7 +30,7 @@
     <definition name="historico" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/historico.jsp"/>
     </definition>
-    <!--  <definition name="deletar" extends="master_logado.page">
+      <definition name="deletar" extends="master_logado.page">
         <put-attribute name="body" value="/WEB-INF/views/logado/deletar_cadastro.jsp"/>
-    </definition> -->
+    </definition> 
 </tiles-definitions>

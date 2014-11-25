@@ -113,8 +113,6 @@ public class UsuarioController {
 	//Método que exclui
 	@RequestMapping(value = "/usuario/deletar/")
 	 public ModelAndView deletar(@ModelAttribute Usuario user, HttpServletRequest request) {
-	  
-		// Salva usuario
 				try {
 					usuario.delete(user);
 					
