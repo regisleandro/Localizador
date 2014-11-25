@@ -111,15 +111,18 @@ public class UsuarioController {
 	}
 	
 	//Método que exclui
-	@RequestMapping(value = "/inicio/deletar/")
-	 public ModelAndView deletarCadastros(Model model,  HttpServletRequest request) {
-	  model.addAttribute("action","/usuario/excluir/");
-	  Usuario user = new Usuario();
-	  if (request.getSession().getAttribute("usuario")!=null){
-	   user = (Usuario) request.getSession().getAttribute("usuario");
-	  }
-	  model.addAttribute("usuario", user); 
+	@RequestMapping(value = "/usuario/deletar/")
+	 public ModelAndView deletar(@ModelAttribute Usuario user, HttpServletRequest request) {
 	  
-	  return new ModelAndView("deletar"); 
+		// Salva usuario
+				try {
+					usuario.delete(user);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				request.getSession().setAttribute("usuario", user);
+				return new ModelAndView("redirect:/principal/");
+		
 	 }
 }
