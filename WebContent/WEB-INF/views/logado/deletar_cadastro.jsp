@@ -6,8 +6,8 @@
 <c:url var="actionPath" value='${action}' />
 <form:form method="post" action="${UsuarioController.deletar}" modelAttribute="usuario" cssClass="form-horizontal">
 	 <form:hidden path="id" />
-	  
+	  ${usuario.user}
 	  <div class="form-group">
-		 	<button type="submit"  class="btn btn-default">Deletar</button>
+		 	<button type="submit"  class="btn btn-default">Apagar este cadastro?</button>
 	  </div>
 </form:form>

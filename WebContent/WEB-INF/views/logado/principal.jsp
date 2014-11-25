@@ -54,7 +54,7 @@ Olá ${usuario.user}!
 <script>
 var username = "${usuario.user}" 
 
-document.getElementById("map").style.visibility="hidden";
+document.getElementById("map").style.display="none";
 
 function getLocation()
   {
@@ -90,7 +90,7 @@ function showPosition(lat, lon){
 			  strokeWeight: 6
 			});
 	});
-	document.getElementById("map").style.visibility="visible";
+	document.getElementById("map").style.display="block";
  }
   
 function showError(error){
@@ -144,7 +144,6 @@ function showError(error){
 				lat = posicao[1];
 				lon = posicao[2];
 			//	showPosition(lat,lon);
-				v
 				btnPosition.style.visibility = "visible";
 				btnPosition.onclick = function(){
 					posicao = position.split("|");

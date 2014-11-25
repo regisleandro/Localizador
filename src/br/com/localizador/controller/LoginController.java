@@ -51,9 +51,12 @@ public class LoginController {
 	public ModelAndView apagarCadastro(Model model,  HttpServletRequest request) {
 		model.addAttribute("action","/usuario/deletar/");
 		Usuario user = new Usuario();
+		if (request.getSession().getAttribute("usuario")!=null){
+			user = (Usuario) request.getSession().getAttribute("usuario");
+		}
 		model.addAttribute("usuario", user);	
-		
-		return new ModelAndView("cadastro");	
+				
+		return new ModelAndView("deletar");	
 	}	
 	@RequestMapping(value = "/inicio/alterar_cadastro/")
 	public ModelAndView alterarCadastro(Model model,  HttpServletRequest request) {

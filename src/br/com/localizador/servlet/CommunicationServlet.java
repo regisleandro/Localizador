@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.catalina.websocket.StreamInbound;
 import org.apache.catalina.websocket.WebSocketServlet;
@@ -15,7 +17,7 @@ import org.apache.catalina.websocket.WebSocketServlet;
 public class CommunicationServlet extends WebSocketServlet {
 	private static final long serialVersionUID = 1L;
 	private static final List<ConnectionWS> connections = new ArrayList<ConnectionWS>();
-
+	
 	@Override
 	protected StreamInbound createWebSocketInbound(String subProtocol,HttpServletRequest request) {
 		String username = request.getParameter("username");

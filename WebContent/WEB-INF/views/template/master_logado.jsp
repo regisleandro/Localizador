@@ -26,9 +26,8 @@
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/amigos/" >Meus Amigos</a></li>
         <li><a  href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/historico/">Histórico Percurso</a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/alterar_cadastro/" >Cadastro</a></li>
-        <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/" > Logout </a></li>
         <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/inicio/deletar/" >Deletar Cadastro</a></li>
-        
+        <li><a href="${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/" onclick="fbLogoutUser()"> Logout </a></li>
     </ul>
 </nav><!-- /slide menu left -->
 <header>
@@ -54,6 +53,55 @@
 <!-- js -->
 <script src="<c:url value='/resources/js/classie.js'/>"></script>
 <script src="<c:url value='/resources/js/nav.js'/>"></script>
+<script type="text/javascript">
+// Load the SDK asynchronously
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
+window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1035110476503940',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.1' // use version 2.1
+    });
+     
+} 
+
+function fbLogoutUser(response){
+	 //check if logout is 
+    FB.getLoginStatus(function (response) {
+        console.log('inside login status');
+        if (response.status === 'connected') {
+            // the user is logged in and has authenticated your
+            // app, and response.authResponse supplies
+            // the user's ID, a valid access token, a signed
+            // request, and the time the access token 
+            // and signed request each expire
+            var uid = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
+            console.log(accessToken)
+            FB.logout(function (response) {
+            	FB.Auth.setAuthResponse(null, 'unknown');
+
+            });
+        } else if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+
+        } else {
+            // the user isn't logged in to Facebook.
+            console.log('response status not logged in');
+        }
+    });	
+}
+
+</script>
 </body>
 </html>

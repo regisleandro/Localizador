@@ -18,7 +18,7 @@
 </div>
 </form:form>
 
-<fb:login-button scope="public_profile,email, user_friends" 
+<fb:login-button scope="public_profile,email, user_friends" autologoutlink="true"
 	onlogin="checkLoginState();">Login com o Facebook
 </fb:login-button>
 
@@ -96,7 +96,6 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function validaLogin() {
       var access_token =   FB.getAuthResponse()['accessToken'];
-      console.log(access_token);
       FB.api('/me', function(response) {
     	  $.ajax({
     		  type: "GET",
