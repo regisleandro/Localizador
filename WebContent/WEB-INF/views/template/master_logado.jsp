@@ -86,8 +86,10 @@ function fbLogoutUser(response){
             // and signed request each expire
             var uid = response.authResponse.userID;
             var accessToken = response.authResponse.accessToken;
+            
             FB.logout(function (response) {
              	try{
+             		console.log(accessToken);
                    	FB.Auth.setAuthResponse(null, 'unknown');
              	}catch(err){}
              	window.location = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/";
@@ -99,8 +101,10 @@ function fbLogoutUser(response){
         } else {
             // the user isn't logged in to Facebook.
             console.log('response status not logged in');
+            window.location = "${req.scheme}://${req.serverName}:${req.serverPort}${req.contextPath}/sair/";
         }
     });	
+ 	
 }
 
 </script>
