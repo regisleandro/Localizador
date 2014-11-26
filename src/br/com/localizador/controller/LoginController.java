@@ -15,7 +15,7 @@ import br.com.localizador.model.Usuario;
 @Controller
 public class LoginController {
 	@Autowired
-	private UsuarioJpaDao usuario;	
+	private UsuarioJpaDao usuarioDao;	
 
 	@RequestMapping(value = "/inicio/")
 	public ModelAndView iniciar() {
@@ -27,11 +27,21 @@ public class LoginController {
 	@ResponseBody
 	public String dadosUsuario(HttpServletRequest request,  @RequestParam (value="json") String facebookUser) {
 		String[] user = facebookUser.split("-");
-
-		Usuario usuario = new Usuario();
-		usuario.setFacebookId(user[0]);
-		usuario.setUser(user[1]);
 		
+		Usuario usuario = null;
+		try{
+			usuario = usuarioDao.loginFacebook(user[0]);
+		}catch(Exception ex){
+			
+		}
+
+		if (usuario == null){
+			usuario = new Usuario();
+			usuario.setFacebookId(user[0]);
+			usuario.setUser(user[1]);
+			
+			usuarioDao.save(usuario);
+		}
 		String accessToken = user[2];
 		request.getSession().setAttribute("usuario", usuario);
 		request.getSession().setAttribute("accessToken", accessToken);
@@ -75,7 +85,7 @@ public class LoginController {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		try{
-		  Usuario user = usuario.login(username, password);
+		  Usuario user = usuarioDao.login(username, password);
 		  request.getSession().setAttribute("usuario", user);
 		}catch(Exception ex){
 			return new ModelAndView("redirect:/inicio/");

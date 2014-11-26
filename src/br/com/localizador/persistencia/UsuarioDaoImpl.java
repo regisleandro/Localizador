@@ -34,5 +34,13 @@ public class UsuarioDaoImpl extends AbstractJpaDao<Usuario> implements UsuarioJp
 		Solicitante s = query.getSingleResult();
 		return s;
 	}
+
+	@Override
+	public Usuario loginFacebook(String facebookId) throws Exception{
+		TypedQuery<Usuario> query = entityManager.createQuery("from Usuario u where u.facebookId = :facebookId", Usuario.class);
+		query.setParameter("facebookId", facebookId);
+		Usuario usuario = query.getSingleResult();
+		return usuario;
+	}
 	
 }

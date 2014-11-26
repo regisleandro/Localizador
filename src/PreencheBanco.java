@@ -24,7 +24,7 @@ public class PreencheBanco {
 		
 	//	Solicitante s1 = (Solicitante) entityManager.createQuery("from Solicitante ").getResultList().get(0);
 		
-		Usuario u = (Usuario) entityManager.createQuery("from Usuario ").getResultList().get(0);	
+		Usuario u = (Usuario) entityManager.createQuery("from Usuario u where u.user='regis'").getResultList().get(0);	
 		System.out.println(u.getUser());
 		
 		Solicitante s = new Solicitante(u);
