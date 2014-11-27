@@ -25,10 +25,7 @@ public class Solicitante extends Usuario{
 	
 	public Solicitante(Usuario u) {
 		super.setFacebookId(u.getFacebookId());
-		super.setId(u.getId());
 		super.setUser(u.getUser());
-		super.setPassword(u.getPassword());
-
 	}
 
 	public List<Historico> getHistorico() {
