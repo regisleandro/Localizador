@@ -1,5 +1,6 @@
 package br.com.localizador.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,8 +33,10 @@ public class Historico {
 		this.solicitado = solicitado;
 	}
 
-	public Date getData() {
-		return data;
+	public String getData() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		return sdf.format(data);
 	}
 
 	public void setData(Date data) {

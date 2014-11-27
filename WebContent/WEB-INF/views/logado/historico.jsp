@@ -9,9 +9,9 @@
     <c:forEach items="${historico}" var="h">
 	    <div class="row">
 	      <div class="col-xs-8 ">
-	      	<fmt:parseDate value="${h.data}" var="date" pattern="yyyy-MM-dd HH:mm:ss"/>
-			<fmt:formatDate value="${date}" pattern="dd/MM/yyyy"/>
-			:  	${h.solicitado.nome}
+
+
+			${h.data} : 	${h.solicitado.nome}
 	      </div>
 
 	    </div>

@@ -53,9 +53,9 @@ public class UsuarioController {
 		String[] dados = geoDados.split("\\|");
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		try{
-			String user = dados[0];
+			String user = (dados[0]).split("\\:").length > 1 ? (dados[0]).split("\\:")[1] : dados[0] ;
 	
-			Usuario u = usuarioDao.getUsuario(user);	
+			Usuario u = usuarioDao.getUsuario(user.replaceAll("^\\s+",""));	
 			
 			EntityManager entityManager = usuarioDao.getEntityManager();
 			entityManager.getTransaction().begin();
@@ -65,7 +65,7 @@ public class UsuarioController {
 			if (s == null){
 				s = new Solicitante(usuario);
 			}
-			
+
 			Solicitado sol = new Solicitado();
 			sol.setNome(u.getUser());
 			Localizacao l = new Localizacao();
@@ -92,6 +92,8 @@ public class UsuarioController {
 			s.setHistorico(hist);
 			
 			entityManager.merge(s);
+			
+			entityManager.getTransaction().commit();
 			
 		}catch(Exception ex){
 			ex.printStackTrace();

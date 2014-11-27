@@ -22,17 +22,21 @@ public class UsuarioDaoImpl extends AbstractJpaDao<Usuario> implements UsuarioJp
 		query.setParameter("password", password);
 		Usuario usuario = query.getSingleResult();
 		if (usuario == null ){
-			throw new Exception("Usuário ou senha inválidos!");
+			throw new Exception("Usuario ou senha invalidos!");
 		}
 		return usuario;
 	}
 
 	@Override
 	public Solicitante getSolicitante(Usuario usuario) throws Exception {
-		TypedQuery<Solicitante> query = entityManager.createQuery("from Solicitante s where s.user = :username", Solicitante.class);
-		query.setParameter("username", usuario.getUser());
-		Solicitante s = query.getSingleResult();
-		return s;
+		try{
+			TypedQuery<Solicitante> query = entityManager.createQuery("from Solicitante s where s.user = :username", Solicitante.class);
+			query.setParameter("username", usuario.getUser());
+			Solicitante s = query.getSingleResult();
+			return s;
+		} catch(Exception ex){
+			return null;
+		}
 	}
 
 	@Override
