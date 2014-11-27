@@ -7,4 +7,5 @@ public interface UsuarioJpaDao extends IGenericDao<Usuario> {
 	public Usuario login(String username, String password) throws Exception;
 	public Usuario loginFacebook(String facebookId)  throws Exception;
 	public Solicitante getSolicitante(Usuario usuario) throws Exception;
+	public Usuario getUsuario(String username) throws Exception;
 }

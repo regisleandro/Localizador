@@ -1,7 +1,7 @@
 package br.com.localizador.persistencia;
 
-// Classe genérica
-// Faz a persistência
+// Classe genï¿½rica
+// Faz a persistï¿½ncia
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -25,6 +25,10 @@ public abstract class AbstractJpaDao<T extends Serializable>{
 	      return entityManager.find(clazz, id);
 	   }
 	
+	   public EntityManager getEntityManager(){
+		   return entityManager;
+	   }
+	   
 	   @SuppressWarnings("unchecked")
 	   public List<T> findAll(){
 		   entityManager.clear();

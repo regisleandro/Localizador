@@ -42,5 +42,13 @@ public class UsuarioDaoImpl extends AbstractJpaDao<Usuario> implements UsuarioJp
 		Usuario usuario = query.getSingleResult();
 		return usuario;
 	}
+
+	@Override
+	public Usuario getUsuario(String userName) throws Exception {
+		TypedQuery<Usuario> query = entityManager.createQuery("from Usuario u where u.user = :username", Usuario.class);
+		query.setParameter("username", userName);
+		Usuario usuario = query.getSingleResult();
+		return usuario;
+	}
 	
 }

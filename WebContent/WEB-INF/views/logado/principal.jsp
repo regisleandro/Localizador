@@ -73,7 +73,13 @@ function getActualPosition(position){
 	return position;
 }
 
-function showPosition(lat, lon){
+function showPosition(position){
+	posicao = position.split("|");
+	console.log(posicao);
+	console.log('posicao' + posicao);
+	lat = posicao[1];
+	lon = posicao[2];
+
 	var path = [];
 	navigator.geolocation.getCurrentPosition(function(actualPosition){
 		var map = new GMaps({
@@ -89,6 +95,17 @@ function showPosition(lat, lon){
 			  strokeOpacity: 0.6,
 			  strokeWeight: 6
 			});
+		
+		var dados = position+"|"+actualPosition.coords.latitude+"|"+actualPosition.coords.longitude;
+		 $.ajax({
+			  type: "GET",
+			  url: "gravaHistorico",
+			  data: "posicao="+dados,
+			  success: function(data) {
+			 	console.log("dados gravados");
+			  }
+			});
+
 	});
 	document.getElementById("map").style.display="block";
  }
@@ -137,29 +154,18 @@ function showError(error){
 			console.log("Recebeu " + data.data);
 			var btnPosition = document.getElementById("btnPosition");
 			var position = data.data;
+			console.log(position);
 			if (position != btnPosition && position !== '"${usuario.user}" se conectou.'){
-				
-				posicao = position.split("|");
-				console.log('posicao' + posicao);
-				lat = posicao[1];
-				lon = posicao[2];
-			//	showPosition(lat,lon);
 				btnPosition.style.visibility = "visible";
 				btnPosition.onclick = function(){
-					posicao = position.split("|");
-					console.log('posicao' + posicao);
-					lat = posicao[1];
-					lon = posicao[2];
-					showPosition(lat,lon);
+					showPosition(position);					
 				};
-			
 			}
-			
 		}; 
 		function sendMessage(position) { 
 			  lat=position.coords.latitude;
 			  lon=position.coords.longitude;
-			websocket.send("|"+lat+"|"+lon); 
+			websocket.send(username+"|"+lat+"|"+lon); 
 		} 
 		document.getElementById("btnEnviar").onclick = function() {
 			getLocation();			 

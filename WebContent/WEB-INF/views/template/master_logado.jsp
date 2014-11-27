@@ -15,6 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/font-awesome/css/font-awesome.min.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/base.css'/>" />
 <link rel="stylesheet" href="<c:url value='/resources/css/style.css'/>" />
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/font-awesome/css/font-awesome.min.css'/>" />
 </head>
  <c:set var="req" value="${pageContext.request}" />
 <body>
@@ -51,6 +52,7 @@
 </div>
 <footer></footer>
 <!-- js -->
+<script type="text/javascript" src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 <script src="<c:url value='/resources/js/classie.js'/>"></script>
 <script src="<c:url value='/resources/js/nav.js'/>"></script>
 <script type="text/javascript">
